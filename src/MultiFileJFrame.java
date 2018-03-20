@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -55,10 +57,11 @@ public class MultiFileJFrame extends JFrame implements ActionListener{
 	
 	private static void createFiles() {
 		for (int i = 0; i < 26; i++) {
-			File path = new File("C:/Program Files (x86)/Steam/steamapps/common/Team Fortress 2/");
-			File newFile = new File(System.getProperty("user.home") + "\\Desktop\\custom menu music\\sound\\ui\\gamestartup\\" + (i + 1) + ".mp3");
+			//File newFile = new File("C:/Steam Games/steamapps/common/Team Fortress 2/tf/custom/custom menu sounds/sound/ui/gamestartup" + (i + 1) + ".mp3");
+			File path = new File("D:/Program Files (x86)/Steam/steamapps/common/Team Fortress 2/");
+			File newFile = new File(System.getProperty("user.home") + "\\Desktop\\custom menu music\\sound\\ui\\gamestartup" + (i + 1) + ".mp3");
 			if (path.exists()) {
-				newFile = new File("C:/Program Files (x86)/Steam/steamapps/common/Team Fortress 2/tf/custom/custom menu music/sound/ui/"
+				newFile = new File("D:/Program Files (x86)/Steam/steamapps/common/Team Fortress 2/tf/custom/custom menu music/sound/ui/"
 						+ "gamestartup" + (i + 1) + ".mp3");
 			}
 			newFiles.add(newFile);
@@ -94,6 +97,7 @@ public class MultiFileJFrame extends JFrame implements ActionListener{
 			finish.setText("");
 		}
 		else if (arg0.getSource().equals(rename)) {
+			System.out.println("Array:" + oldFiles.size());
 			finish.setText("Working...");
 			setComponentProperties();
 			this.add(finish);
@@ -101,9 +105,11 @@ public class MultiFileJFrame extends JFrame implements ActionListener{
 				for (int i = 0; i < 26; i++) {
 					for(File file : oldFiles) {
 						if (i < 26) {
+							System.out.println(i);
 							try {
 								FileUtils.copyFile(file, newFiles.get(i));
-								i++;
+								if (oldFiles.size() != 1)
+									i++;
 							} catch (Exception e) {
 								e.printStackTrace();
 								finish.setText("Error!");
