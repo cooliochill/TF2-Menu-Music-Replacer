@@ -55,7 +55,12 @@ public class MultiFileJFrame extends JFrame implements ActionListener{
 	
 	private static void createFiles() {
 		for (int i = 0; i < 26; i++) {
-			File newFile = new File("C:/Steam Games/steamapps/common/Team Fortress 2/tf/custom/custom menu sounds/sound/ui/gamestartup" + (i + 1) + ".mp3");
+			File path = new File("C:/Program Files (x86)/Steam/steamapps/common/Team Fortress 2/");
+			File newFile = new File(System.getProperty("user.home") + "\\Desktop\\custom menu music\\sound\\ui\\gamestartup\\" + (i + 1) + ".mp3");
+			if (path.exists()) {
+				newFile = new File("C:/Program Files (x86)/Steam/steamapps/common/Team Fortress 2/tf/custom/custom menu music/sound/ui/"
+						+ "gamestartup" + (i + 1) + ".mp3");
+			}
 			newFiles.add(newFile);
 		}
 	}
